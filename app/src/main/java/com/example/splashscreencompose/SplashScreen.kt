@@ -1,6 +1,6 @@
 package com.example.splashscreencompose
 
-import androidx.compose.animation.Animatable
+import android.content.Context
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -31,7 +31,7 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import kotlinx.coroutines.delay
 
 @Composable
-fun SplashScreen(navController: NavController)
+fun SplashScreen(navController: NavController, context: MainActivity)
 {
     val alpha = remember{
         Animatable(0f)
@@ -42,6 +42,15 @@ fun SplashScreen(navController: NavController)
             animationSpec = tween(4000)
         )
         delay(5000  )
+
+        if (onBoardingIsFinished(context = context)) {
+            navController.popBackStack()
+            navController.navigate("Home")
+        } else {
+            navController.popBackStack()
+            navController.navigate("Onboarding")
+
+        }
         navController.popBackStack()
         navController.navigate("Onboarding")
     }
@@ -50,10 +59,10 @@ fun SplashScreen(navController: NavController)
         .background(if (isSystemInDarkTheme()) Color.DarkGray else Color.White),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally){
-LoaderAnimation(
-    modifier=Modifier.size(400.dp),
-    anim=R.raw.splash
-)
+        LoaderAnimation(
+            modifier=Modifier.size(400.dp),
+            anim=R.raw.splash
+        )
         Spacer(modifier = Modifier.height(25.dp))
         Text(text = "Travel Snap",
             modifier = Modifier.alpha(alpha.value),
@@ -68,9 +77,15 @@ LoaderAnimation(
 @Composable
 fun LoaderAnimation(modifier: Modifier, anim: Int)
 {
-val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(anim))
+    val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(anim))
 
     LottieAnimation(composition = composition,
-    iterations = LottieConstants.IterateForever,
+        iterations = LottieConstants.IterateForever,
         modifier = modifier)
+}
+
+private fun onBoardingIsFinished(context: MainActivity): Boolean {
+    val sharedPreferences = context.getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
+    return sharedPreferences.getBoolean("isFinished", false)
+
 }
