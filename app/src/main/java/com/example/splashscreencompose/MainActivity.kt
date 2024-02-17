@@ -30,9 +30,22 @@ class MainActivity : ComponentActivity() {
                     {
                         OnboardingScreen(navController = navController,context=this@MainActivity)
                     }
+                    composable("Login")
+                    {
+                        LoginScreen(navController = navController)
+                    }
+
                     composable("Home")
                     {
-                       LoginScreen()
+                        Home(navController = navController)
+                    }
+                    composable("Signup")
+                    {
+                        SignupScreen(navController = navController)
+                    }
+                    composable("SignupBoardingScreen")
+                    {
+                        SignupBoardingScreen(navController = navController)
                     }
 
 
