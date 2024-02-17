@@ -78,7 +78,7 @@ fun SignupBoardingScreen(navController: NavController) {
             colors = ButtonDefaults.buttonColors(Color.White)
         ) {
             Text(
-                text = "Continue",
+                text = "Explore",
                 color = Color(0xFF0FA3E2)
             )
         }
