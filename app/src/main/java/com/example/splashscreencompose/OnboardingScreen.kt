@@ -165,7 +165,7 @@ fun ButtonsSection(pagerState: PagerState, navController: NavHostController, con
 
                 onBoardingIsFinished(context = context)
                 navController.popBackStack()
-                navController.navigate("Home")
+                navController.navigate("Login")
             },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -218,7 +218,6 @@ private fun onBoardingIsFinished(context: MainActivity) {
     val editor = sharedPreferences.edit()
     editor.putBoolean("isFinished", true)
     editor.apply()
-
 }
 
 

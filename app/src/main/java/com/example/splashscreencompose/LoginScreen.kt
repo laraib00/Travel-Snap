@@ -27,10 +27,11 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.navigation.NavController
 
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavController) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisibility by remember { mutableStateOf(false) }
@@ -118,7 +119,7 @@ fun LoginScreen() {
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
-            onClick = { /* Handle login logic here */ },
+            onClick = {  navController.navigate("Home") },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(48.dp)
@@ -137,7 +138,7 @@ fun LoginScreen() {
                 color = Color.Blue,
                 textDecoration = TextDecoration.Underline,
                 modifier = Modifier.clickable {
-                    // Handle sign up action
+                    navController.navigate("Signup")
                 }
             )
         }
