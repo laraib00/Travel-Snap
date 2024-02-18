@@ -47,6 +47,15 @@ class MainActivity : ComponentActivity() {
                     {
                         SignupBoardingScreen(navController = navController)
                     }
+                    composable("ForgetPassword")
+                    {
+                        ForgetPassword(navController = navController)
+                    }
+                    composable("CreatePassword")
+                    {
+                        CreatePassword(navController = navController)
+                    }
+
 
 
 

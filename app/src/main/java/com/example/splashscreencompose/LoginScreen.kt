@@ -101,7 +101,7 @@ fun LoginScreen(navController: NavController) {
                     onCheckedChange = { isChecked -> rememberMe = isChecked },
                     modifier = Modifier
                         .padding(end = 8.dp)
-                        .size(24.dp) // Adjust the size as needed
+                        .size(24.dp)
                 )
                 Text("Remember me")
             }
@@ -110,7 +110,7 @@ fun LoginScreen(navController: NavController) {
                 color = Color.Blue,
                 textDecoration = TextDecoration.Underline,
                 modifier = Modifier.clickable {
-                    // Handle forget password action
+                    navController.navigate("ForgetPassword")
                 }
             )
         }
