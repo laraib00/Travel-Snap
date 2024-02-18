@@ -67,7 +67,7 @@ fun SignupBoardingScreen(navController: NavController) {
         }
 
         Button(
-            onClick = { /* Handle button click */ },
+            onClick = { navController.navigate("Home") },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(50.dp)
