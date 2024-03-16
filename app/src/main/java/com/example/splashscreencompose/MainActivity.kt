@@ -1,5 +1,6 @@
 package com.example.splashscreencompose
 
+import Home
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
