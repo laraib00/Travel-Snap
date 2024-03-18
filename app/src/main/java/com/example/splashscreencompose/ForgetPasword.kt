@@ -1,5 +1,8 @@
 package com.example.splashscreencompose
 
+import android.content.Context
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -17,9 +20,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.navigation.NavController
-
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 @Composable
@@ -49,7 +54,8 @@ fun ForgetPassword(navController: NavController) {
         Text(
             text = "Welcome to Discover",
             fontSize = 25.sp,
-            fontWeight = FontWeight.Light        )
+            fontWeight = FontWeight.Light
+        )
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
@@ -63,7 +69,7 @@ fun ForgetPassword(navController: NavController) {
 
         Spacer(modifier = Modifier.height(16.dp))
         Button(
-            onClick = {  navController.navigate("CreatePassword") },
+            onClick = {},
             modifier = Modifier
                 .fillMaxWidth()
                 .height(48.dp)
@@ -75,5 +81,6 @@ fun ForgetPassword(navController: NavController) {
 
 
     }
+
 }
 
