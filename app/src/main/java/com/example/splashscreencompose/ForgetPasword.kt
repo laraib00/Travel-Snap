@@ -31,6 +31,8 @@ import com.google.firebase.ktx.Firebase
 fun ForgetPassword(navController: NavController) {
     var email by remember { mutableStateOf("") }
 
+    val context = LocalContext.current
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -69,7 +71,7 @@ fun ForgetPassword(navController: NavController) {
 
         Spacer(modifier = Modifier.height(16.dp))
         Button(
-            onClick = {},
+            onClick = { forgetPass(navController, context, email) },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(48.dp)
@@ -82,5 +84,18 @@ fun ForgetPassword(navController: NavController) {
 
     }
 
+}
+
+fun forgetPass(navController: NavController,context: Context, email: String) {
+    Firebase.auth.sendPasswordResetEmail(email).addOnCompleteListener {
+        if (it.isSuccessful) {
+            Toast.makeText(context, "Link send to this email", Toast.LENGTH_SHORT).show()
+            Log.d("lava", "forgetPass: ${it.exception}")
+            navController.navigate("Login")
+        }
+
+    }.addOnFailureListener {
+
+    }
 }
 
