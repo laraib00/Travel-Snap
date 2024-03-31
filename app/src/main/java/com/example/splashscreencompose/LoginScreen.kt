@@ -1,6 +1,7 @@
 package com.example.splashscreencompose
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -214,7 +215,9 @@ fun LoginScreen(navController: NavController) {
                                     remove(PREF_PASSWORD)
                                 }
                             }
-                            navController.navigate("Home")
+                             // navController.navigate("homeActivity")
+                            val intent = Intent(context, HomeActivity::class.java)
+                            context.startActivity(intent)
                         }
                     }.addOnFailureListener {
                         Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()

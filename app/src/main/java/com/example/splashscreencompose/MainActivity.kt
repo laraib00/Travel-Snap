@@ -1,6 +1,7 @@
 package com.example.splashscreencompose
 
 import Home
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -9,6 +10,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.activity
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -57,9 +59,9 @@ class MainActivity : ComponentActivity() {
                         CreatePassword(navController = navController)
                     }
 
-
-
-
+                    activity("homeActivity") {
+                        Intent(this@MainActivity, HomeActivity::class.java)
+                    }
                 }
 
             }
