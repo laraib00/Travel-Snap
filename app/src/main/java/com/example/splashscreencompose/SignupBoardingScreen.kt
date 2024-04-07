@@ -27,6 +27,7 @@ import androidx.navigation.NavController
 
 @Composable
 fun SignupBoardingScreen(navController: NavController) {
+    val context = LocalContext.current
     Box(
         modifier = Modifier.fillMaxSize()
             .background(Color(0xFF0FA3E2))
@@ -67,7 +68,8 @@ fun SignupBoardingScreen(navController: NavController) {
         }
 
         Button(
-            onClick = { navController.navigate("Home") },
+            onClick = { val intent = Intent(context, HomeActivity::class.java)
+                context.startActivity(intent) },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(50.dp)
