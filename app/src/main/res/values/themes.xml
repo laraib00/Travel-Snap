@@ -2,5 +2,7 @@
 <resources>
 
     <style name="Theme.SplashScreenCompose" parent="android:Theme.Material.Light.NoActionBar" />
-    <style name="Theme.AppCompat" parent="Theme.Material3.Light.NoActionBar" />
+    <style name="Theme.AppCompat" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/grey</item>
+    </style>
 </resources>

@@ -5,7 +5,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.widget.Toast
+import android.window.OnBackInvokedDispatcher
+import androidx.activity.addCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.compose.runtime.collectAsState
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
@@ -22,6 +26,7 @@ import com.example.splashscreencompose.travelResponse.TravelResponse
 import com.example.splashscreencompose.utils.Constants
 import com.example.splashscreencompose.utils.NetworkResult
 import com.example.splashscreencompose.viewModel.TravelViewModel
+import com.google.android.material.button.MaterialButton
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -63,6 +68,9 @@ class HomeActivity : AppCompatActivity() {
             android.R.color.holo_red_light)
 
 
+        binding.images.setOnClickListener {
+            navigateToMainActivity()
+        }
          reviewObserver()
     }
 
@@ -102,6 +110,7 @@ class HomeActivity : AppCompatActivity() {
                     Log.d("Result", it.message.toString())
                     Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                     binding.swipe.isRefreshing = false
+                    binding.progress.isVisible = false
                 }
                 is NetworkResult.Loading -> {
                         binding.progress.isVisible = true
@@ -112,11 +121,48 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun fetchDataForLocationId(locationId: String) {
+        Log.d("API","API hitted.")
         travelViewModel.getReviews(
             Constants.API_KEY,
             locationId,
             language = "en_US",
             currency = "USD"
         )
+    }
+
+    private fun navigateToMainActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("destination", "gallery")
+        startActivity(intent)
+    }
+
+    override fun onBackPressed() {
+        appExitDialog()
+    }
+
+    override fun getOnBackInvokedDispatcher(): OnBackInvokedDispatcher {
+        onBackPressedDispatcher.addCallback {
+            appExitDialog()
+        }
+        return super.getOnBackInvokedDispatcher()
+    }
+    private fun appExitDialog() {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.exit_dialog, null)
+        val dialogBuilder = AlertDialog.Builder(this)
+            .setView(dialogView)
+
+        val dialog = dialogBuilder.create()
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.setCancelable(false)
+        dialog.show()
+
+        dialog.findViewById<MaterialButton>(R.id.btn_cancel)?.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.findViewById<MaterialButton>(R.id.btn_exit)?.setOnClickListener {
+            finishAffinity()
+            dialog.dismiss()
+        }
     }
 }

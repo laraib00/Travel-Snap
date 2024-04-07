@@ -215,7 +215,7 @@ fun LoginScreen(navController: NavController) {
                                     remove(PREF_PASSWORD)
                                 }
                             }
-                             // navController.navigate("homeActivity")
+                            //navController.navigate("swipeAblePages")
                             val intent = Intent(context, HomeActivity::class.java)
                             context.startActivity(intent)
                         }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SplashScreenCompose</string>
+    <string name="app_name">Travel Snap</string>
     <string name="rating_star">Rating Star</string>
     <string name="rating_5_0">5.0</string>
     <string name="title">Title</string>
@@ -16,4 +16,9 @@
     <string name="publisher">Publisher</string>
     <string name="read_more"><u>Read More</u></string>
     <string name="read_less"><u>Read Less</u></string>
+    <string name="fetch_images">Fetch Images</string>
+    <string name="images">Images</string>
+    <string name="are_you_sure_you_want_to_exit">Are you sure you want to exit?</string>
+    <string name="cancel">Cancel</string>
+    <string name="exit">Exit</string>
 </resources>
