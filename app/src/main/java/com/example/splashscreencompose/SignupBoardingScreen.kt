@@ -1,5 +1,6 @@
 package com.example.splashscreencompose
 
+import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -19,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -27,6 +29,7 @@ import androidx.navigation.NavController
 
 @Composable
 fun SignupBoardingScreen(navController: NavController) {
+    val context = LocalContext.current
     Box(
         modifier = Modifier.fillMaxSize()
             .background(Color(0xFF0FA3E2))
@@ -67,7 +70,10 @@ fun SignupBoardingScreen(navController: NavController) {
         }
 
         Button(
-            onClick = { navController.navigate("Home") },
+            onClick = {
+                val intent = Intent(context, HomeActivity::class.java)
+                context.startActivity(intent)
+                      },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(50.dp)
